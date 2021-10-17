@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Running hammer++ for gmod under linux</title>
+	<link rel="stylesheet" href="css/main.css">
+	
+</head>
+<body>
+
+	<div class="global-block">
+		<div class="middle-block">
+			<div id="header">
+			</div>
+<p>Running hammer++ for gmod under linux</p>
+
+			<div id="text-header">
+			Подготовка
+			</div>
+			<div id="text-hidden">
+				<div id="text-hidden-div"><img src="../ServiceStuff/warning.svg" height="40px" width="40px"><div style="width: 20px;"></div><a>		Я использую дистрибутив ArchLinux и проверяю данный способ только на нем.</a></div>
+			</div>
+			<div id="text">
+				Напомню, наша цель - запустить hammer++ для работы с gmod, с минимальной болью.<br>
+				Для начала ознакомьтесь с прошлым гайдом.
+				<div id="text-command">
+					<div id="text-command-div">
+						<a target="_blank" rel="noopener noreferrer" href="https://michael-soyka.github.io/Michael-Soyka/tutorials/Run_Hammer++_on_Linux/index.html">https://michael-soyka.github.io/Michael-Soyka/tutorials/Run_Hammer++_on_Linux/index.html</a>
+					</div>
+				</div>
+				Откройте терминал, перейдите в дирректорию 'Source Engine 2013 MP' и пропишите следующее
+				<div id="text-command">
+					<div id="text-command-div">mkdir ./gmod_sdk</div>
+				</div>
+				<div id="text-command">
+					<div id="text-command-div">sudo ln -s "path_to_gmod_folder" "path_to_source_engine_2013_mp/gmod_sdk/gmod_root"</div>
+				</div>
+				<div id="text-command">
+					<div id="text-command-div">sudo ln -s "path_to_gmod_folder/garrysmod" "path_to_source_engine_2013_mp/gmod_sdk/gmod"</div>
+				</div>
+				<div style="background: url('img/tut_ph01.png'); width: 100%; height: 400px; background-size: 100% 100%; margin: 10px auto;"></div>
+				В директорию gmod_sdk положите отконфигурированый мной <a href=”https://michael-soyka.github.io/Michael-Soyka/tutorials/Run_Hammer++_on_linux_for_gmod/files/gameinfo.txt”>файл</a>.
+				Теперь перейдите в
+				<div id="text-command">
+					<div id="text-command-div">"Source SDK Base 2013 Multiplayer/bin/hammerplusplus/"</div>
+				</div>
+				и откройте "hammerplusplus_gameconfig.txt".<br>
+				После "SourceTest" добавьте следующее и замените PATH_TO_SOURCE_ENGINE_2013_MP на путь к вашему 'Source Egnine 2013 MP'.
+				<div id="text-command">
+					<div id="text-command-div">
+"Gmod"
+{
+	"GameDir"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk"
+	"Hammer"
+	{
+		"GameData0"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk\gmod_root\bin\garrysmod.fgd"
+		"TextureFormat"		"5"
+		"MapFormat"		"4"
+		"DefaultTextureScale"		"0.250000"
+		"DefaultLightmapScale"		"16"
+		"GameExe"		"PATH_TO_SOURCE_ENGINE_2013_MP\hl2.exe"
+		"DefaultSolidEntity"		"func_detail"
+		"DefaultPointEntity"		"info_player_start"
+		"BSP"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk\gmod_root\bin\vbsp.exe"
+		"Vis"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk\gmod_root\bin\vvis.exe"
+		"Light"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk\gmod_root\bin\vrad.exe"
+		"GameExeDir"		"PATH_TO_SOURCE_ENGINE_2013_MP\"
+		"MapDir"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk\gmod\mapsrc"
+		"BSPDir"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk\gmod\maps"
+		"PrefabDir"		"PATH_TO_SOURCE_ENGINE_2013_MP\gmod_sdk\gmod\prefabssrc"
+		"CordonTexture"		"tools\toolsskybox"
+		"MaterialExcludeCount"		"0"
+		"Previous"		"0"
+	}
+}
+					</div>
+				</div>
+				Теперь можете вернуться в директорию bin и запустить hammer++ с конфигом под gmod.<br>
+				<br>
+				<div id="text-hidden">
+					<div id="text-hidden-div"><img src="../ServiceStuff/warning.svg" height="40px" width="40px"><div style="width: 20px;"></div><a>    Возможно у вас будут проблемы с конфигами в окне выбора режимов компиляции карты (Expert Mode).<br><br>Поченить это можно восстановив 'hammerplusplus_sequences.cfg' с помощью 'hammerplusplus_sequences_default.cfg'.
+					</a></div>
+				</div>
+				<br>
+				Поздравляю, теперь у вас есть рабочий hammer++ и вы можете создавать униКальные карты для garrysmod'a.
+			</div>
+		</div>
+	</div>
+</body>
+</html>
