@@ -1,56 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Running Hammer++ under Linux</title>
-	<meta property="og:title" content="Run Hammer++ under Linux">
+	<title>Adding woosh sound effect</title>
+	<meta property="og:title" content="Adding woosh sound effect">
 	<meta name="author" content="M. Soyka">
-	<meta property="og:locale" content="en_US">
-	<meta property="og:site_name" content="Run Hammer++ under Linux">
+	<meta property="og:locale" content="en_GB">
+	<meta property="og:site_name" content="Adding woosh sound effect">
 	<meta name="twitter:card" content="summary">
-	<meta property="twitter:title" content="Run Hammer++ under Linux">
+	<meta property="twitter:title" content="Adding woosh sound effect">
 
-    <link rel="stylesheet" href="css/main.css">
-    
+	<link rel="stylesheet" href="css/main.css">
+	
 </head>
 <body>
 
-    <div class="lang-swith"><a href="./index.html">🇷🇺 Russian</a></div>
-    <div class="global-block">
-        <div class="middle-block">
-            <div id="header">
-            </div>
-<p>Running Hammer++ under Linux</p>
-
-            <div id="text-header">
-            Preparing
-            </div>
-			<div id="text-hidden">
-				<div id="text-hidden-div"><img src="../ServiceStuff/warning.svg" height="40px" width="40px"><div style="width: 20px;"></div><a>		I using ArchLinux distributive and checking this method only on it.</a></div>
+	<div class="lang-swith"><a href="./index_en.html">🇬🇧 English</a></div>
+	<div class="global-block">
+		<div class="middle-block">
+			<div id="header">
 			</div>
-            <div id="text">
-                Remember, our target - run "Hammer++" with minimal pain.<br>
-                At first, we need to install portproton.<br>
-                Switch to any comfort directory for you and run this command: 
-                <div id="text-command">
-                    <div id="text-command-div">wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton-97" && sh PortProton-97</div>
+			<p>Adding woosh</p>
+
+			<div id="text">
+				Open hl2_player.cpp<br>
+				Above "DEFINE_SOUNDPATCH( m_sndLeeches ),"
+				<div id="text-command">
+                    <div id="text-command-div">DEFINE_SOUNDPATCH(m_pWooshSound),</div>
                 </div>
-                Now we need to download "Hammer++"
-                <div id="text-command">
-                    <div id="text-command-div"><a target="_blank" rel="noopener noreferrer" href="https://ficool2.github.io/HammerPlusPlus-Website/pages/download.html" >https://ficool2.github.io/HammerPlusPlus-Website/pages/download.html</a></div>
+				Add this to "hl2_player.h". Define our "m_pWooshSound" in "private:" section
+				<div id="text-command">
+                    <div id="text-command-div">CSoundPatch		*m_pWooshSound;</div>
                 </div>
-                Install "Source Engine 2013 SP/MP" in "SteamPlay" mode with "Proton" and extract Hammer++ 'bin' to the root of your 'Source Engine 2013 MP/SP'.
-                <div style="background: url('img/tut_ph01.png'); width: 100%; height: 250px; background-size: 100% 100%; margin: 10px auto;"></div>
-                You can try to run 'hammerplusplus.exe' with default configuratons (DXVK/STEAMPROTON), but most probably you will see it.<br>(Also, maybe there will be lags when you rotate the camera or try to create a brush.)
-                <div style="background: url('img/tut_ph02.png'); width: 100%; height: 450px; background-size: 100% 100%; margin: 10px auto;"></div>
-                Well, it's time to put Croatian magic tricks into action!<br>
-                Set the "OpenGL" + "Steam Proton" mode, and now we get a good result.<br>
-                <div style="background: url('img/tut_ph03.png'); width: 100%; height: 450px; background-size: 100% 100%; margin: 10px auto;"></div>
-                You can start saying: "Oh, lucky, lucky", but this black "WinForm border" can be a little annoying.<br>
-                Easy Fix for "WinForm" is waiting for your use! Just collapse and expand "Hammer++" or just "Alt+Tab" into this window.<br>
-                <div style="background: url('img/tut_ph04.png'); width: 100%; height: 450px; background-size: 100% 100%; margin: 10px auto;"></div>
-                Congratulations, now you have a working "Hammer++" and you can create unique maps for your mod.
-            </div>
-        </div>
-    </div>
+                Prepare place for our functions. In "hl2_player.h" ниже "virtual void OnRestore();" add
+				<div id="text-command">
+                    <div id="text-command-div">
+virtual void		CreateSounds(void);
+void				UpdateWoosh(void);
+</div>
+                </div>
+				Right above "void CHL2_Player::StopLoopingSounds( void )" add<br>
+				<div id="text-command">
+                    <div id="text-command-div">
+//-----------------------------------------------------------------------------
+// Creating Sound
+//-----------------------------------------------------------------------------
+
+void CHL2_Player::CreateSounds()
+{
+	if (!m_pWooshSound)
+	{
+		CSoundEnvelopeController &controller = CSoundEnvelopeController::GetController();
+		CPASAttenuationFilter filter(this);
+		m_pWooshSound = controller.SoundCreate(filter, entindex(), "HL2Player.Woosh");
+		controller.Play(m_pWooshSound, 0, 100);
+	}					
+}
+</div>
+                </div>
+                Now we need to make "CreateSounds" work. In "Spawn(void)" below "BaseClass::Spawn();" add<br>
+				<div id="text-command">
+                    <div id="text-command-div">CreateSounds();</div>
+                </div>
+                And now we need to add sound precache. In "void CHL2_Player::Precache( void )" add
+				<div id="text-command">
+                    <div id="text-command-div">PrecacheScriptSound("HL2Player.Woosh");</div>
+                </div>
+                Don't forggot stop our sounds.
+                In "void CHL2_Player::StopLoopingSounds( void )", at the top add<br>
+				<div id="text-command">
+                    <div id="text-command-div">
+if (m_pWooshSound)
+{
+	CSoundEnvelopeController &controller = CSoundEnvelopeController::GetController();
+	controller.SoundDestroy(m_pWooshSound);
+	m_pWooshSound = NULL;
+}
+</div>
+                </div>
+                Adding volume update function for out sound<br>
+				<div id="text-command">
+                    <div id="text-command-div">
+void CHL2_Player::UpdateWoosh(void)
+{
+	if (m_pWooshSound)
+	{
+		CSoundEnvelopeController &controller = CSoundEnvelopeController::GetController();
+		float fWooshVol = GetAbsVelocity().Length() - MIN_WOOSH_SPEED;
+		if (fWooshVol < 0.0f)
+		{
+			controller.SoundChangeVolume(m_pWooshSound, 0.0f, 0.1f);
+			return;
+		}
+
+		fWooshVol /= 2000.0f;
+		if (fWooshVol > 1.0f)
+			fWooshVol = 1.0f;
+
+		controller.SoundChangeVolume(m_pWooshSound, fWooshVol, 0.1f);
+	}
+}
+</div>
+				</div>
+                Now we need to make it work. In "void CHL2_Player::PostThink( void )" add
+				<div id="text-command">
+                    <div id="text-command-div">UpdateWoosh();</div>
+                </div>
+                Also we need to define "MIN_WOOSH_SPEED". Open "hl2_shareddefs.h" and add
+				<div id="text-command">
+                    <div id="text-command-div">#define MIN_FLING_SPEED 750</div>
+                </div>
+                So... code part is completed. Compile project and getting started with game.<br>
+                After compilation, transfer client and server dll's to out mod.<br>
+                Create "sound" directory and put our <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/Michael-Soyka/Michael-Soyka/main/tutorials/Adding_woosh_sound_effect/files/woosh.wav">file</a> there.<br>
+				In directory "scripts" creating "game_sounds_mymod.txt" file and enter it into it
+                Далее в директории "scripts" создаем файл "game_sounds_mymod.txt" и вписываем в него
+				<div id="text-command">
+                    <div id="text-command-div">
+"HL2Player.Woosh"
+{
+	"channel" "CHAN_STATIC"
+	"volume" "1.00"
+	"soundlevel" "SNDLVL_85dB"
+	"pitch" "100"
+	"wave" "woosh.wav"	
+}
+</div>
+				</div>
+
+                So, you need to take "game_sounds_manifest.txt" from the game that you are developing your mod for.
+                Add precache of our new "sound file" to this file.  
+				<div id="text-command">
+                    <div id="text-command-div">	"precache_file"		"scripts/game_sounds_mymod.txt"</div>
+                </div>
+                Good job.
+			</div>
+		</div>
+	</div>
 </body>
 </html>
