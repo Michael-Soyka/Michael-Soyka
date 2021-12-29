@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adding woosh sound effect</title>
+	<meta property="og:title" content="Adding woosh sound effect">
+	<meta name="author" content="M. Soyka">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:site_name" content="Adding woosh sound effect">
+	<meta name="twitter:card" content="summary">
+	<meta property="twitter:title" content="Adding woosh sound effect">
+
+	<link rel="stylesheet" href="css/main.css">
+	
+</head>
+<body>
+
+	<div class="lang-swith"><a href="./index_en.html">🇬🇧 English</a></div>
+	<div class="global-block">
+		<div class="middle-block">
+			<div id="header">
+			</div>
+			<p>Добавление woosh</p>
+
+			<div id="text">
+				Открываем hl2_player.cpp<br>
+				Вписываем над "DEFINE_SOUNDPATCH( m_sndLeeches ),"
+				<div id="text-command">
+                    <div id="text-command-div">DEFINE_SOUNDPATCH(m_pWooshSound),</div>
+                </div>
+				Добавим его определение в хэдер "hl2_player.h". Объявите наш "m_pWooshSound" в разделе "private:"
+				<div id="text-command">
+                    <div id="text-command-div">CSoundPatch		*m_pWooshSound;</div>
+                </div>
+				Подготовим место под наши функции. В хэдер "hl2_player.h" ниже виртуального типа "OnRestore();" пишем
+				<div id="text-command">
+                    <div id="text-command-div">
+virtual void		CreateSounds(void);
+void				UpdateWoosh(void);
+</div>
+                </div>
+				Теперь прямо над "void CHL2_Player::StopLoopingSounds( void )" вписываем<br>
+				<div id="text-command">
+                    <div id="text-command-div">
+//-----------------------------------------------------------------------------
+// Creating Sound
+//-----------------------------------------------------------------------------
+
+void CHL2_Player::CreateSounds()
+{
+	if (!m_pWooshSound)
+	{
+		CSoundEnvelopeController &controller = CSoundEnvelopeController::GetController();
+		CPASAttenuationFilter filter(this);
+		m_pWooshSound = controller.SoundCreate(filter, entindex(), "HL2Player.Woosh");
+		controller.Play(m_pWooshSound, 0, 100);
+	}					
+}
+</div>
+                </div>
+				Теперь заставляем работать наш "CreateSounds". Внутри "Spawn(void)" ниже "BaseClass::Spawn();" добавляем<br>
+				<div id="text-command">
+                    <div id="text-command-div">CreateSounds();</div>
+                </div>
+				И теперь делаем пре-кэш звука. Внутри "void CHL2_Player::Precache( void )" пишем
+				<div id="text-command">
+                    <div id="text-command-div">PrecacheScriptSound("HL2Player.Woosh");</div>
+                </div>
+				(Этого небыло в видео) Не забываем останавливать наш звук.<br>
+				Внутри "void CHL2_Player::StopLoopingSounds( void )" в самом начале вписываем
+				<div id="text-command">
+                    <div id="text-command-div">
+if (m_pWooshSound)
+{
+	CSoundEnvelopeController &controller = CSoundEnvelopeController::GetController();
+	controller.SoundDestroy(m_pWooshSound);
+	m_pWooshSound = NULL;
+}
+</div>
+                </div>
+				Добавляем обновление громкости нашего звука<br>
+				<div id="text-command">
+                    <div id="text-command-div">
+void CHL2_Player::UpdateWoosh(void)
+{
+	if (m_pWooshSound)
+	{
+		CSoundEnvelopeController &controller = CSoundEnvelopeController::GetController();
+		float fWooshVol = GetAbsVelocity().Length() - MIN_WOOSH_SPEED;
+		if (fWooshVol < 0.0f)
+		{
+			controller.SoundChangeVolume(m_pWooshSound, 0.0f, 0.1f);
+			return;
+		}
+
+		fWooshVol /= 2000.0f;
+		if (fWooshVol > 1.0f)
+			fWooshVol = 1.0f;
+
+		controller.SoundChangeVolume(m_pWooshSound, fWooshVol, 0.1f);
+	}
+}
+</div>
+				</div>
+				Теперь заставляем его работать. Внутри "void CHL2_Player::PostThink( void )" пишем  
+				<div id="text-command">
+                    <div id="text-command-div">UpdateWoosh();</div>
+                </div>
+				Также нужно определить наш "MIN_WOOSH_SPEED". Открываем хэдер "hl2_shareddefs.h" и вписываем 
+				<div id="text-command">
+                    <div id="text-command-div">#define MIN_FLING_SPEED 750</div>
+                </div>
+				На этом этапе с кодом покончено. Компилируем и приступаем к самой игре.<br>
+				После компиляции перекидываем библиотеки client и server в наш мод.<br>
+				Создаем директорию sound и кладем туда наш файл со <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/Michael-Soyka/Michael-Soyka/main/tutorials/Adding_woosh_sound_effect/files/woosh.wav">звуком ветра</a>.<br>
+				Далее в директории "scripts" создаем файл "game_sounds_mymod.txt" и вписываем в него
+				<div id="text-command">
+                    <div id="text-command-div">
+"HL2Player.Woosh"
+{
+	"channel" "CHAN_STATIC"
+	"volume" "1.00"
+	"soundlevel" "SNDLVL_85dB"
+	"pitch" "100"
+	"wave" "woosh.wav"	
+}
+</div>
+				</div>
+				Далее, вам нужен файл "game_sounds_manifest.txt" от той игры под которую вы делаете ваш мод, в моей случае это "HL2:EP2" и файл я беру его от туда. <br>
+				Добавляем в этот файл пре-кэш нашего нового файла со звуками.
+				<div id="text-command">
+                    <div id="text-command-div">	"precache_file"		"scripts/game_sounds_mymod.txt"</div>
+                </div>
+				На этом все.
+			</div>
+		</div>
+	</div>
+</body>
+</html>
