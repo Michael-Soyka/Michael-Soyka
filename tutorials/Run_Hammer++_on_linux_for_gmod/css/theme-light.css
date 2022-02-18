@@ -1,0 +1,20 @@
+:root
+{
+    --background-default: #fff;
+    --background-main-default: #fff;
+}
+
+.lang-switch svg
+{
+    fill: #000;
+}
+
+body
+{
+    color: black;
+}
+
+p
+{
+    color: black;
+}
