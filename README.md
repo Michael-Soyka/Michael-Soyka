@@ -7,4 +7,6 @@
 
 * [Unofficial update for Pressure² [WIP]](https://github.com/Michael-Soyka/Pressure2-reload)
 
-![Visitc](https://https://count.getloli.com/get/@Michael-Soyka?theme=rule34)
+
+
+![Visit counter](https://count.getloli.com/get/@:MichaelSoykaGitHub?theme=rule34)
