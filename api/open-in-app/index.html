@@ -1,0 +1,32 @@
+<a class="the-lord-link"></a>
+
+<script>
+    ( () => {
+        const urlParams = new URLSearchParams( window.location.search );
+
+        const excludedSchemes = [ 'http:', 'ftp:', 'https:', 'discord:' ];
+
+        if( urlParams.has( 'path' ) )
+        {
+            xdgToOpen = urlParams.get( 'path' );
+            
+            try
+            {
+                const xdgTest = new URL( xdgToOpen );
+
+                if( excludedSchemes.includes( xdgTest.protocol ) )
+                {
+                    throw new Error( 'Unsupported xdg type :D' );
+                }
+            }
+            catch ( ex )
+            {
+                console.log( ex );
+
+                return;
+            }
+
+            window.location.replace( xdgToOpen );
+        }
+    } )();
+</script>
