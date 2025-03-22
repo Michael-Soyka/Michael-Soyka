@@ -1,0 +1,205 @@
+:root {
+    --center-wide: 800px;
+    --page-block-height: 400px; 
+
+    --image-widgth: 320px;
+
+    --block-top-bottom-padding: 30px;
+}
+
+html {
+    font-family: 'Courier New', Courier, monospace;
+
+    color: white;
+}
+
+body {
+    margin: 0;
+    
+    background-color: #1e1e1e;
+}
+
+img {
+    pointer-events: none;
+    user-select: none;
+}
+
+span {
+    user-select: none;
+}
+
+.centerier {
+    width: var( --center-wide );
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.page-block {
+    padding: var( --block-top-bottom-padding ) 0;
+
+    width: 100%;
+    height: var( --page-block-height );
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.image {
+    position: relative;
+}
+.image > .image-info {
+    position: absolute;
+    
+    bottom: 0;
+    right: 0;
+}
+
+.image-info {
+    display: flex;
+
+    background-color: #000000a0;
+    
+    width: 100%;
+
+    flex-direction: row-reverse;
+}
+.image-info span {
+    color: white
+}
+
+.page-block#main {
+}
+.page-block#main .centerier {
+    justify-content: center;
+    align-items: center;
+    
+    gap: 32px;
+}
+.page-block#main img {
+    width: 512px;
+    object-fit: contain;
+}
+.page-block#main .desc {
+    text-align: center;
+    width: 500px;
+}
+
+.page-block#showcase {
+}
+.page-block#showcase .centerier {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+
+    column-gap: 32px;
+
+    overflow-y: scroll;
+}
+.page-block#showcase::-webkit-scrollbar {
+    display: none;
+}
+
+.page-block#showcase .image {
+    width: var( --image-widgth );
+    
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page-block#showcase .image img {
+    width: 100%;
+    height: 100%;
+
+    transition: 0.2s;
+}
+.page-block#showcase .image:hover img {
+    height: 90%; 
+    width: 90%;
+
+    transition: 0.2s;
+}
+.page-block#showcase .image:hover .image-info {
+    visibility: hidden;
+}
+
+.page-block#download {
+    height: 128px;
+}
+.page-block#download .centerier {
+    justify-content: center;
+    align-items: center;
+}
+.page-block#download .centerier a {
+    background-color: rgb(120, 196, 255);
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.page-block#download .centerier a:hover {
+    color: rgb(30, 30, 30);
+    background-color: rgb(94, 154, 200);
+    transition: 0.25s;
+}
+
+.page-block#footer {
+    background-color: #0c0c0c;
+
+    height: 128px;
+}
+.page-block#footer .centerier {
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.image-preveiwer {
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #0000009f;
+}
+.image-preveiwer img {
+    width: 90%;
+    object-fit: contain;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 32px;
+}
+.footer-links a {
+
+}
+.footer-links a img {
+    width: 128px;
+
+    object-fit: contain;
+}
