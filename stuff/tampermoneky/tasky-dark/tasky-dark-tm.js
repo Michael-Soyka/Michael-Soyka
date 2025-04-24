@@ -241,6 +241,10 @@ GM_addStyle (`
         --${PLUGIN_PREFIX}-right-area-task-top-background: var( --${PLUGIN_PREFIX}-background-main );
         --${PLUGIN_PREFIX}-right-area-task-top-border: var( --${PLUGIN_PREFIX}-border );
 
+        --${PLUGIN_PREFIX}-right-area-task-top-timer-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-top-finish-control-text: var( --${PLUGIN_PREFIX}-text-main );
+
         --${PLUGIN_PREFIX}-right-area-task-description-border: var( --${PLUGIN_PREFIX}-border );
         --${PLUGIN_PREFIX}-right-area-task-description-background: var( --${PLUGIN_PREFIX}-background-second );
 
@@ -274,10 +278,23 @@ GM_addStyle (`
 
         --${PLUGIN_PREFIX}-right-area-task-chat-background: var( --${PLUGIN_PREFIX}-overlay-main );
 
+        --${PLUGIN_PREFIX}-right-area-task-chat-message-date-text: var( --${PLUGIN_PREFIX}-text-second );
+
+        --${PLUGIN_PREFIX}-right-area-task-chat-message-card-background: var( --${PLUGIN_PREFIX}-background-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-chat-message-card-quote-background: var( --${PLUGIN_PREFIX}-background-second );
+
+        --${PLUGIN_PREFIX}-right-area-task-chat-message-card-user-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-right-area-task-chat-message-card-time-text: var( --${PLUGIN_PREFIX}-text-second );
+        --${PLUGIN_PREFIX}-right-area-task-chat-message-card-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-chat-event-text: var( --${PLUGIN_PREFIX}-text-second );
+        --${PLUGIN_PREFIX}-right-area-task-chat-event-head-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-chat-event-decorated-background: var( --${PLUGIN_PREFIX}-overlay-main );
+
         --${PLUGIN_PREFIX}-right-area-task-chat-footer-background: var( --${PLUGIN_PREFIX}-background-main );
         --${PLUGIN_PREFIX}-right-area-task-chat-footer-border: var( --${PLUGIN_PREFIX}-border );
-
-
 
 
 
@@ -331,6 +348,8 @@ GM_addStyle (`
 
         --${PLUGIN_PREFIX}-right-area-report-card-username-text: var( --${PLUGIN_PREFIX}-text-main );
         --${PLUGIN_PREFIX}-right-area-report-card-tasks-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-report-card-result-text: var( --${PLUGIN_PREFIX}-text-main );
 
 
 
@@ -937,6 +956,18 @@ GM_addStyle (`
         border-color: var( --${PLUGIN_PREFIX}-right-area-task-top-border );
     }
 
+    #right .task .task-top .timer p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-top-timer-text );
+    }
+
+    #right .task .task-top .task-top__finish-control {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-top-finish-control-text );
+    }
+
+    #right .task .task-top svg:not( .timer-toggler svg ):not( .task-top__timer-blocker_active svg ) {
+        filter: invert( 1 );
+    }
+
     #right .task .task__main_side_description .task-description__row .task-description__title-wrapper textarea {
         color: var( --${PLUGIN_PREFIX}-right-area-task-description-title-text );
     }
@@ -1041,8 +1072,53 @@ GM_addStyle (`
         border-color: var( --${PLUGIN_PREFIX}-right-area-task-description-border );
     }
 
+    #right .task .task__chat .task__comments-data p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-date-text );
+    }
+
     #right .task .task__chat .task__comment-wrapper {
         background-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-background );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .chat-event-head p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-event-head-text );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .chat-event-body p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-event-text );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .chat-event-body_decorated {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-event-decorated-background );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .message__date p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-date-text );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .comment__card {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-card-background );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .comment__card .comment__tail {
+        /* HACK HACK HACK HACK */
+        filter: brightness(0.145);
+    }
+
+    #right .task .task__chat .task__comment-wrapper .comment__card .quatation__main {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-card-quote-background );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .comment__card .comment__info {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-card-user-text );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .comment__card .comment__time {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-card-time-text );
+    }
+
+    #right .task .task__chat .task__comment-wrapper .comment__card .comment__value .ql-editor {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-card-text );
     }
 
     #right .task .task__chat .task__comment-menu {
@@ -1168,6 +1244,14 @@ GM_addStyle (`
 
     #right .department-card .t-worktime-row__tasks {
         color: var( --${PLUGIN_PREFIX}-right-area-report-card-tasks-text );
+    }
+
+    #right .department-card .department-card__results {
+        color: var( --${PLUGIN_PREFIX}-right-area-report-card-result-text );
+    }
+
+    #right .department-card .department-card__results .department-card__name-cell {
+        color: var( --${PLUGIN_PREFIX}-right-area-report-card-result-text );
     }
 
 
