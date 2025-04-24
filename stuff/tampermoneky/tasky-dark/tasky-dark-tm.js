@@ -236,12 +236,38 @@ GM_addStyle (`
 
 
         --${PLUGIN_PREFIX}-right-area-task-background: var( --${PLUGIN_PREFIX}-background-second );
+        --${PLUGIN_PREFIX}-right-area-task-border: var( --${PLUGIN_PREFIX}-border );
 
         --${PLUGIN_PREFIX}-right-area-task-top-background: var( --${PLUGIN_PREFIX}-background-main );
         --${PLUGIN_PREFIX}-right-area-task-top-border: var( --${PLUGIN_PREFIX}-border );
 
         --${PLUGIN_PREFIX}-right-area-task-description-border: var( --${PLUGIN_PREFIX}-border );
         --${PLUGIN_PREFIX}-right-area-task-description-background: var( --${PLUGIN_PREFIX}-background-second );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-title-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-row-sub-text: var( --${PLUGIN_PREFIX}-text-second );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-responsible-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-background: var( --${PLUGIN_PREFIX}-background-second );
+        --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-border: var( --${PLUGIN_PREFIX}-border );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-hover-background: var( --${PLUGIN_PREFIX}-background-main );
+        --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-hover-border: var( --${PLUGIN_PREFIX}-border-second );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-editor-border: var( --${PLUGIN_PREFIX}-border );
+        --${PLUGIN_PREFIX}-right-area-task-description-editor-ql-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-editor-ql-toolbar-background: var( --${PLUGIN_PREFIX}-background-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-editor-ql-toolbar-item-hover-background: var( --${PLUGIN_PREFIX}-background-second );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-files-add-border: var( --${PLUGIN_PREFIX}-border );
+        --${PLUGIN_PREFIX}-right-area-task-description-files-add-text: var( --${PLUGIN_PREFIX}-text-second );
+
+        --${PLUGIN_PREFIX}-right-area-task-description-subtasks-add-border : var( --${PLUGIN_PREFIX}-border );
+        --${PLUGIN_PREFIX}-right-area-task-description-subtasks-add-text: var( --${PLUGIN_PREFIX}-text-second );
 
         --${PLUGIN_PREFIX}-right-area-task-description-footer-background: var( --${PLUGIN_PREFIX}-background-main );
         --${PLUGIN_PREFIX}-right-area-task-description-footer-border: var( --${PLUGIN_PREFIX}-border );
@@ -903,12 +929,104 @@ GM_addStyle (`
 
     #right .task {
         background-color: var( --${PLUGIN_PREFIX}-right-area-task-background );
+        border-color: var( --${PLUGIN_PREFIX}-right-area-task-border );
     }
 
     #right .task .task-top {
         background-color: var( --${PLUGIN_PREFIX}-right-area-task-top-background );
         border-color: var( --${PLUGIN_PREFIX}-right-area-task-top-border );
     }
+
+    #right .task .task__main_side_description .task-description__row .task-description__title-wrapper textarea {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-title-text );
+    }
+
+    #right .task .task__main_side_description .task-description__row .task-description__title-wrapper svg {
+        filter: invert( 1 );
+    }
+
+    #right .task .task__main_side_description .task-description__row .task-description__subtitle {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-sub-text );
+    }
+
+    #right .task .task__main_side_description .task-description__row .t-plus-btn {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-background );
+        border-color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-border );
+    }
+
+    #right .task .task__main_side_description .task-description__row .t-plus-btn:hover {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-hover-background );
+        border-color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-add-button-hover-border );
+    }
+
+    #right .task .task__main_side_description .describe .describe__subtitle {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-sub-text );
+    }
+
+    #right .task .task__main_side_description .task-description__info-responsible .responsible p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-responsible-text );
+    }
+
+    #right .task .task__main_side_description .task-description__info-responsible svg {
+        filter: invert( 1 );
+    }
+
+    #right .task .task__main_side_description .describe .describe__editor {
+        border-color: var( --${PLUGIN_PREFIX}-right-area-task-description-editor-border );
+    }
+
+    #right .task .task__main_side_description .describe .describe__editor .ql-editor {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-editor-ql-text );
+    }
+
+    #right .task .task__main_side_description .describe .describe__editor .ql-toolbar {
+        padding: 2px;
+        border-radius: 5px;
+
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-description-editor-ql-toolbar-background );
+    }
+
+    #right .task .task__main_side_description .describe .describe__editor .ql-toolbar button:hover {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-description-editor-ql-toolbar-item-hover-background );
+    }
+
+    #right .task .task__main_side_description .describe .describe__editor .ql-toolbar svg {
+        filter: invert( 1 );
+    }
+
+    #right .task .task__main_side_description .files .files__subtitle {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-sub-text );
+    }
+
+    #right .task .task__main_side_description .files .files__attacher_empty {
+        border-color: var( --${PLUGIN_PREFIX}-right-area-task-description-files-add-border );
+    }
+
+    #right .task .task__main_side_description .files .files__attacher_empty p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-files-add-text );
+    }
+
+    #right .task .task__main_side_description .files .files__attacher_empty svg {
+        filter: invert( 1 );
+    }
+
+    #right .task .task__main_side_description .subtasks .subtasks__title {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-row-sub-text );
+    }
+
+    #right .task .task__main_side_description .subtasks .subtasks__adder {
+        border-color: var( --${PLUGIN_PREFIX}-right-area-task-description-subtasks-add-border );
+    }
+
+    #right .task .task__main_side_description .subtasks .subtasks__adder p {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-description-subtasks-add-text )
+    }
+
+    #right .task .task__main_side_description .subtasks .subtasks__adder svg {
+        filter: invert( 1 );
+    }
+
+
 
     #right .task .task__main_side_description .task-description__footer {
         background-color: var( --${PLUGIN_PREFIX}-right-area-task-description-footer-background );
