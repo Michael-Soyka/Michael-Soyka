@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tasky Dark
 // @namespace    delta-tasky
-// @version      2025-04-21
+// @version      2025-04-27
 // @description  Dark theme part of the `Delta` plugin that makes the `Tasky` more customizable
 // @author       Michael Soyka
 // @match        https://*.tasky.online/*
