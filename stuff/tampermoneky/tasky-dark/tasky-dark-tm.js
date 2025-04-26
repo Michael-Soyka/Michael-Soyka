@@ -97,6 +97,12 @@ GM_addStyle (`
         --${PLUGIN_PREFIX}-service-modal-top-title-text: var( --${PLUGIN_PREFIX}-text-main );
 
         --${PLUGIN_PREFIX}-service-modal-session-title-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-service-modal-account-adder-field-key-text: var( --${PLUGIN_PREFIX}-text-second );
+
+        --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-border: var( --${PLUGIN_PREFIX}-border );
+        --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-hover-border: var( --${PLUGIN_PREFIX}-border-second );
         
 
 
@@ -110,12 +116,28 @@ GM_addStyle (`
         
         --${PLUGIN_PREFIX}-left-menu-projects-text: var( --${PLUGIN_PREFIX}-text-main );
         --${PLUGIN_PREFIX}-left-menu-projects-active-background: var( --${PLUGIN_PREFIX}-background-second );
+        --${PLUGIN_PREFIX}-left-menu-current-task-timer-text: var( --${PLUGIN_PREFIX}-text-second );
+
+        --${PLUGIN_PREFIX}-left-menu-current-task-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-left-menu-current-task-background: var( --${PLUGIN_PREFIX}-background-second );
+        --${PLUGIN_PREFIX}-left-menu-current-task-border: var( --${PLUGIN_PREFIX}-border );
 
         --${PLUGIN_PREFIX}-left-menu-profile-user-name-text: var( --${PLUGIN_PREFIX}-text-main );
         --${PLUGIN_PREFIX}-left-menu-profile-account-name-text: var( --${PLUGIN_PREFIX}-text-second );
 
         --${PLUGIN_PREFIX}-left-menu-profile-menu-background: var( --${PLUGIN_PREFIX}-background-main );
-        --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-role-border: var( --${PLUGIN_PREFIX}-border );
+
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-background: var( --${PLUGIN_PREFIX}-background-second );
+        
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-title-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-info-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-domain-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-id-text: var( --${PLUGIN_PREFIX}-text-second );
+
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-nav-text: var( --${PLUGIN_PREFIX}-text-second );
+        --${PLUGIN_PREFIX}-left-menu-profile-menu-nav-hover-text: var( --${PLUGIN_PREFIX}-text-main );
 
 
 
@@ -295,6 +317,9 @@ GM_addStyle (`
 
         --${PLUGIN_PREFIX}-right-area-task-chat-footer-background: var( --${PLUGIN_PREFIX}-background-main );
         --${PLUGIN_PREFIX}-right-area-task-chat-footer-border: var( --${PLUGIN_PREFIX}-border );
+
+        --${PLUGIN_PREFIX}-right-area-task-chat-emoji-background: var( --${PLUGIN_PREFIX}-background-main );
+        --${PLUGIN_PREFIX}-right-area-task-chat-emoji-border: var( --${PLUGIN_PREFIX}-border );
 
 
 
@@ -558,6 +583,40 @@ GM_addStyle (`
         color: var( --${PLUGIN_PREFIX}-service-modal-session-title-text );
     }
 
+
+
+    .t-modal__main .account-adder .t-input__key {
+        color: var( --${PLUGIN_PREFIX}-service-modal-account-adder-field-key-text );
+    }
+
+    .t-modal__main .account-adder .t-input__value {
+        color: var( --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-text );
+        border-color: var( --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-border );
+    }
+
+    .t-modal__main .account-adder .t-input__value:hover {
+        border-color: var( --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-hover-border );
+    }
+
+
+
+    .tippy-box .t-emoji-select {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-emoji-background );
+        border-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-emoji-border );
+    }
+
+    /*
+    .tippy-box .t-emoji-select:after {
+        content: "";
+        height: 32px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient( 0deg, var( --${PLUGIN_PREFIX}-right-area-task-chat-emoji-background ), transparent );
+    }
+    */
+
     
 
     /* Left menu */
@@ -600,6 +659,21 @@ GM_addStyle (`
         background-color: var( --${PLUGIN_PREFIX}-left-menu-projects-active-background );
     }
 
+    .sidebar .current-task {
+        background-color: var( --${PLUGIN_PREFIX}-left-menu-current-task-background );
+        border-color: var( --${PLUGIN_PREFIX}-left-menu-current-task-border );
+
+        border-bottom: 1px solid var( --${PLUGIN_PREFIX}-left-menu-current-task-border );
+    }
+
+    .sidebar .current-task .current-task__bottom {
+        color: var( --${PLUGIN_PREFIX}-left-menu-current-task-text );
+    }
+
+    .sidebar .current-task .current-task__timer p {
+        color: var( --${PLUGIN_PREFIX}-left-menu-current-task-timer-text );
+    }
+
     .sidebar .profile {
         border-color: var( --${PLUGIN_PREFIX}-left-menu-border ) !important;
     }
@@ -621,12 +695,47 @@ GM_addStyle (`
     }
 
     .sidebar .profile .menu .menu__change-account {
-        color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-text );
+        color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-title-text );
     }
 
     .sidebar .profile .menu .menu__change-account .t-common-icon svg {
         filter: invert( 1 );
     }
+
+    .sidebar .profile .menu .menu__accounts {
+        border-color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-role-border );
+    }
+
+    .sidebar .profile .menu .menu__account:hover,
+    .sidebar .profile .menu .menu__account.current {
+        background-color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-background );
+    }
+
+    .sidebar .profile .menu .menu__account.current .menu__account-name {
+        color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-info-text );
+    }
+
+    .sidebar .profile .menu .menu__account.current .menu__account-domain {
+        color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-domain-text );
+    }
+
+    .sidebar .profile .menu .menu__account.current .menu__account-id {
+        color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-change-account-id-text );
+    }
+
+    .sidebar .profile .menu .profile__nav .profile__route p {
+        color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-nav-text );
+    }
+
+    .sidebar .profile .menu .profile__nav .profile__route:hover p {
+        color: var( --${PLUGIN_PREFIX}-left-menu-profile-menu-nav-hover-text );
+    }
+
+    .sidebar .profile .menu .profile__nav .profile__route svg {
+        filter:invert( 1 );
+    }
+
+
 
     /* Right Area */
     #right {
@@ -1124,6 +1233,10 @@ GM_addStyle (`
     #right .task .task__chat .task__comment-menu {
         background-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-footer-background );
         border-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-footer-border );
+    }
+
+    #right .task .task__chat .task__comment-menu .message-editor__control svg {
+        filter: invert( 1 );
     }
 
 
