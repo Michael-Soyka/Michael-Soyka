@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tasky Dark
 // @namespace    delta-tasky
-// @version      2025-04-27
+// @version      2025-04-28
 // @description  Dark theme part of the `Delta` plugin that makes the `Tasky` more customizable
 // @author       Michael Soyka
 // @match        https://*.tasky.online/*
@@ -1000,6 +1000,9 @@ GM_addStyle (`
     #right .wrapper .task-row.tasks-list__head {
         background-color: var( --${PLUGIN_PREFIX}-right-area-tasks-list-header-row-background );
         border-color: var( --${PLUGIN_PREFIX}-right-area-tasks-list-header-row-border );
+    
+        -webkit-backdrop-filter: blur( 8px );
+        backdrop-filter: blur( 8px );
     }
 
     #right .wrapper .task-row.tasks-list__head .task-row__cell {
