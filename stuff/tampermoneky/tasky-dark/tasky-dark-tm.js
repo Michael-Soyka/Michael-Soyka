@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tasky Dark
 // @namespace    delta-tasky
-// @version      2025-04-28
+// @version      2025-04-30
 // @description  Dark theme part of the `Delta` plugin that makes the `Tasky` more customizable
 // @author       Michael Soyka
 // @match        https://*.tasky.online/*
@@ -104,6 +104,24 @@ GM_addStyle (`
         --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-border: var( --${PLUGIN_PREFIX}-border );
         --${PLUGIN_PREFIX}-service-modal-account-adder-field-value-hover-border: var( --${PLUGIN_PREFIX}-border-second );
         
+        --${PLUGIN_PREFIX}-service-tippy-emoji-background: var( --${PLUGIN_PREFIX}-background-main );
+        --${PLUGIN_PREFIX}-service-tippy-emoji-border: var( --${PLUGIN_PREFIX}-border );
+
+        --${PLUGIN_PREFIX}-service-tippy-type-list-border: var( --${PLUGIN_PREFIX}-border );
+        --${PLUGIN_PREFIX}-service-tippy-type-list-background: var( --${PLUGIN_PREFIX}-background-main );
+
+        --${PLUGIN_PREFIX}-service-tippy-type-list-search-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-service-tippy-type-list-search-border: var( --${PLUGIN_PREFIX}-border );
+
+        --${PLUGIN_PREFIX}-service-tippy-type-list-item-text: var( --${PLUGIN_PREFIX}-text-second );
+
+        --${PLUGIN_PREFIX}-service-tippy-type-list-item-hover-text: var( --${PLUGIN_PREFIX}-text-main );
+        --${PLUGIN_PREFIX}-service-tippy-type-list-item-hover-background: var( --${PLUGIN_PREFIX}-background-second );
+
+        
+
+
+
 
 
         --${PLUGIN_PREFIX}-left-menu-logo-text: var( --${PLUGIN_PREFIX}-text-main );
@@ -180,6 +198,10 @@ GM_addStyle (`
         --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-status-list-item-text: var( --${PLUGIN_PREFIX}-text-second );
         --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-status-list-item-selected-background: var( --${PLUGIN_PREFIX}-background-second );
         --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-status-list-item-selected-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-filtred-item-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-filtred-item-border: var( --${PLUGIN_PREFIX}-border );
 
         --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-footer-save-template-button-background: var( --${PLUGIN_PREFIX}-background-second );
         --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-footer-save-template-button-hover-background: var( --${PLUGIN_PREFIX}-background-main );
@@ -317,9 +339,6 @@ GM_addStyle (`
 
         --${PLUGIN_PREFIX}-right-area-task-chat-footer-background: var( --${PLUGIN_PREFIX}-background-main );
         --${PLUGIN_PREFIX}-right-area-task-chat-footer-border: var( --${PLUGIN_PREFIX}-border );
-
-        --${PLUGIN_PREFIX}-right-area-task-chat-emoji-background: var( --${PLUGIN_PREFIX}-background-main );
-        --${PLUGIN_PREFIX}-right-area-task-chat-emoji-border: var( --${PLUGIN_PREFIX}-border );
 
 
 
@@ -601,7 +620,7 @@ GM_addStyle (`
 
 
     .tippy-box .t-emoji-select {
-        background-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-emoji-background );
+        background-color: var( --${PLUGIN_PREFIX}-service-tippy-emoji-background );
         border-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-emoji-border );
     }
 
@@ -613,9 +632,35 @@ GM_addStyle (`
         position: absolute;
         bottom: 0;
         left: 0;
-        background: linear-gradient( 0deg, var( --${PLUGIN_PREFIX}-right-area-task-chat-emoji-background ), transparent );
+        background: linear-gradient( 0deg, var( --${PLUGIN_PREFIX}-service-tippy-emoji-background ), transparent );
     }
     */
+
+
+
+    .tippy-box .t-items {
+        border-color: var( --${PLUGIN_PREFIX}-service-tippy-type-list-border );
+        background-color: var( --${PLUGIN_PREFIX}-service-tippy-type-list-background );
+    }
+
+    .tippy-box .t-items .t-items__filter {
+        color: var( --${PLUGIN_PREFIX}-service-tippy-type-list-search-text );
+        border-color: var( --${PLUGIN_PREFIX}-service-tippy-type-list-search-border );
+    }
+
+    .tippy-box .t-items .t-items__list .t-items__element label {
+        color: var( --${PLUGIN_PREFIX}-service-tippy-type-list-item-text );
+    }
+
+    .tippy-box .t-items .t-items__list .t-items__element:hover:not(.t-items__element_blocked),
+    .tippy-box .t-items .t-items__list .t-items__element_selected {
+        background-color: var( --${PLUGIN_PREFIX}-service-tippy-type-list-item-hover-background );
+    }
+
+    .tippy-box .t-items .t-items__list .t-items__element:hover:not(.t-items__element_blocked) label,
+    .tippy-box .t-items .t-items__list .t-items__element_selected label {
+        color: var( --${PLUGIN_PREFIX}-service-tippy-type-list-item-hover-text );
+    }
 
     
 
@@ -870,6 +915,24 @@ GM_addStyle (`
         background-color: var( --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-footer-save-template-button-hover-background );
     }
 
+    #right .top-filter__body .top-filter__right .top-filter__staus-item span {
+        color: var( --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-status-list-item-text );
+    }
+
+    #right .top-filter__body .top-filter__right .top-filter__filtered-items ul li {
+        border-color: var( --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-filtred-item-border );
+    }
+
+    #right .top-filter__body .top-filter__right .top-filter__filtered-items ul li p {
+        color: var( --${PLUGIN_PREFIX}-right-area-filter-presets-right-area-field-filtred-item-text );
+    }
+
+    #right .top-filter__body .top-filter__right .top-filter__filtered-items ul li svg {
+        filter: invert( 1 );
+    }
+
+
+
     #right .search-and-filter .t-global-search {
         background-color: var( --${PLUGIN_PREFIX}-right-area-search-background );
     }
@@ -1000,7 +1063,7 @@ GM_addStyle (`
     #right .wrapper .task-row.tasks-list__head {
         background-color: var( --${PLUGIN_PREFIX}-right-area-tasks-list-header-row-background );
         border-color: var( --${PLUGIN_PREFIX}-right-area-tasks-list-header-row-border );
-    
+
         -webkit-backdrop-filter: blur( 8px );
         backdrop-filter: blur( 8px );
     }
