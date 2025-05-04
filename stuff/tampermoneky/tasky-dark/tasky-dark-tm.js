@@ -390,6 +390,8 @@ GM_addStyle (`
 
         --${PLUGIN_PREFIX}-right-area-report-card-text: var( --${PLUGIN_PREFIX}-text-main );
 
+        --${PLUGIN_PREFIX}-right-area-report-card-row-hover-background: var( --${PLUGIN_PREFIX}-background-second );
+
         --${PLUGIN_PREFIX}-right-area-report-card-username-text: var( --${PLUGIN_PREFIX}-text-main );
         --${PLUGIN_PREFIX}-right-area-report-card-tasks-text: var( --${PLUGIN_PREFIX}-text-main );
 
@@ -1415,6 +1417,10 @@ GM_addStyle (`
 
     #right .department-card .department-card__title {
         color: var( --${PLUGIN_PREFIX}-right-area-report-card-text );
+    }
+
+    #right .department-card .t-worktime-row:hover {
+        background-color: var( --${PLUGIN_PREFIX}-right-area-report-card-row-hover-background );
     }
 
     #right .department-card .t-worktime-row__name {
