@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tasky Dark
 // @namespace    delta-tasky
-// @version      2025-05-06
+// @version      2025-06-13
 // @description  Dark theme part of the `Delta` plugin that makes the `Tasky` more customizable
 // @author       Michael Soyka
 // @match        https://*.tasky.online/*
@@ -331,6 +331,8 @@ GM_addStyle (`
         --${PLUGIN_PREFIX}-right-area-task-chat-message-card-user-text: var( --${PLUGIN_PREFIX}-text-main );
         --${PLUGIN_PREFIX}-right-area-task-chat-message-card-time-text: var( --${PLUGIN_PREFIX}-text-second );
         --${PLUGIN_PREFIX}-right-area-task-chat-message-card-text: var( --${PLUGIN_PREFIX}-text-main );
+
+        --${PLUGIN_PREFIX}-right-area-task-chat-message-editor-text: var( --${PLUGIN_PREFIX}-text-main );
 
         --${PLUGIN_PREFIX}-right-area-task-chat-event-text: var( --${PLUGIN_PREFIX}-text-second );
         --${PLUGIN_PREFIX}-right-area-task-chat-event-head-text: var( --${PLUGIN_PREFIX}-text-main );
@@ -1303,8 +1305,12 @@ GM_addStyle (`
         border-color: var( --${PLUGIN_PREFIX}-right-area-task-chat-footer-border );
     }
 
-    #right .task .task__chat .task__comment-menu .message-editor__control svg {
+    #right .task .task__chat .task__comment-menu .message-editor .message-editor__control svg {
         filter: invert( 1 );
+    }
+
+    #right .task .task__chat .task__comment-menu .message-editor .ql-editor {
+        color: var( --${PLUGIN_PREFIX}-right-area-task-chat-message-editor-text );
     }
 
 
