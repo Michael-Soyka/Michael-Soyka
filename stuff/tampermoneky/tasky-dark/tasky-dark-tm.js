@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tasky Dark
 // @namespace    delta-tasky
-// @version      2025-06-13
+// @version      2025-07-05
 // @description  Dark theme part of the `Delta` plugin that makes the `Tasky` more customizable
 // @author       Michael Soyka
 // @match        https://*.tasky.online/*
@@ -139,6 +139,9 @@ GM_addStyle (`
         --${PLUGIN_PREFIX}-left-menu-current-task-text: var( --${PLUGIN_PREFIX}-text-main );
         --${PLUGIN_PREFIX}-left-menu-current-task-background: var( --${PLUGIN_PREFIX}-background-second );
         --${PLUGIN_PREFIX}-left-menu-current-task-border: var( --${PLUGIN_PREFIX}-border );
+
+        --${PLUGIN_PREFIX}-left-menu-current-tasks-background: var( --${PLUGIN_PREFIX}-background-second );
+        --${PLUGIN_PREFIX}-left-menu-current-tasks-border: var( --${PLUGIN_PREFIX}-border );
 
         --${PLUGIN_PREFIX}-left-menu-profile-user-name-text: var( --${PLUGIN_PREFIX}-text-main );
         --${PLUGIN_PREFIX}-left-menu-profile-account-name-text: var( --${PLUGIN_PREFIX}-text-second );
@@ -466,7 +469,8 @@ GM_addStyle (`
     }
 
     .t-choise .t-choise__user:hover:not( .t-choise__user_blocked ),
-    .t-choise .t-choise__user_selected {
+    .t-choise .t-choise__user_selected,
+    .t-choise .t-choise__user_checked {
         background-color: var( --${PLUGIN_PREFIX}-service-user-list-item-selected-background );
     }
 
@@ -713,6 +717,11 @@ GM_addStyle (`
         border-color: var( --${PLUGIN_PREFIX}-left-menu-current-task-border );
 
         border-bottom: 1px solid var( --${PLUGIN_PREFIX}-left-menu-current-task-border );
+    }
+
+    .sidebar .sidebar__state {
+        background-color: var( --${PLUGIN_PREFIX}-left-menu-current-tasks-background );
+        border-color: var( --${PLUGIN_PREFIX}-left-menu-current-tasks-border )
     }
 
     .sidebar .current-task .current-task__bottom {
