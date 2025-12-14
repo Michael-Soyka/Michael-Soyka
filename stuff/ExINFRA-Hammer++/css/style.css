@@ -196,8 +196,9 @@ span {
     background-color: #0000009f;
 }
 .image-preveiwer img {
-    height: 90%;
     object-fit: contain;
+    max-height: 90%;
+    max-width: 95%;
 }
 
 .space-block {
