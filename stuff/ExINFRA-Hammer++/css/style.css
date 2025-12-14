@@ -11,12 +11,19 @@ html {
     font-family: 'Courier New', Courier, monospace;
 
     color: white;
+
+    height: 100%;
 }
 
 body {
     margin: 0;
     
     background-color: #1e1e1e;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
 }
 
 img {
@@ -91,6 +98,7 @@ span {
 }
 
 .page-block#showcase {
+    height: 256px;
 }
 .page-block#showcase .centerier {
     flex-direction: row;
@@ -137,7 +145,7 @@ span {
 }
 
 .page-block#download {
-    height: 256px;
+    height: 128px;
 }
 .page-block#download .centerier {
     justify-content: center;
@@ -190,6 +198,10 @@ span {
 .image-preveiwer img {
     height: 90%;
     object-fit: contain;
+}
+
+.space-block {
+    flex: 1;
 }
 
 .footer-links {
