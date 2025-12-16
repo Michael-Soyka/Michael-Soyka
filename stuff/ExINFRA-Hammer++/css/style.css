@@ -98,7 +98,7 @@ span {
 }
 
 .page-block#showcase {
-    height: 256px;
+    max-height: 420px;
 }
 .page-block#showcase .centerier {
     flex-direction: row;
