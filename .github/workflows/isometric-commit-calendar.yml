@@ -1,7 +1,20 @@
-name: Isometric commit calendar
-uses: lowlighter/metrics@latest
-with:
-  filename: metrics.plugin.isocalendar.fullyear.svg
-  token: ${{ secrets.GITHUB_TOKEN }}
-  base: ""
-  plugin_isocalendar: yes
+name: Update GH profile metrics
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Metrics embed
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.isocalendar.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_isocalendar: yes
