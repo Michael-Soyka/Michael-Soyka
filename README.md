@@ -11,6 +11,8 @@ Letters:
 Not letters:
 - [Steam-lib-designer](https://github.com/Michael-Soyka/steam-lib-designer)
 - [Unofficial update for Pressure² [WIP]](https://github.com/Michael-Soyka/Pressure2-reload)
+- [Hammer++ Dark mode](https://github.com/Michael-Soyka/HammerPlusPlus-ExtraDark)
+- [Mor. Utopia Viewer](https://github.com/Michael-Soyka/Mor-Viewer)
 
 Cool letters:
  - [Conventional Commits](https://www.conventionalcommits.org)
