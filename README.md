@@ -6,11 +6,12 @@
 
 Letters:
 - [Woosh Tutorial](https://michael-soyka.github.io/Michael-Soyka/tutorials/Adding_woosh_sound_effect/index.html)
-- [ExINFRA Hammer++](https://michael-soyka.github.io/Michael-Soyka/stuff/ExINFRA-Hammer++)
+- ~[ExINFRA Hammer++](https://michael-soyka.github.io/Michael-Soyka/stuff/ExINFRA-Hammer++)~
 
 Not letters:
 - [Steam-lib-designer](https://github.com/Michael-Soyka/steam-lib-designer)
 - [Unofficial update for Pressure² [WIP]](https://github.com/Michael-Soyka/Pressure2-reload)
+- [Hammer++ patcher for INFRA](https://github.com/Michael-Soyka/HammerPlusPlus-INFRA)
 - [Hammer++ Dark mode](https://github.com/Michael-Soyka/HammerPlusPlus-ExtraDark)
 - [Mor. Utopia Viewer](https://github.com/Michael-Soyka/Mor-Viewer)
 
